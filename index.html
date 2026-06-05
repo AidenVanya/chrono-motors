@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Chrono Motors — Dünyanın en nadide otomobilleri için dijital showroom. Ferrari, Lamborghini, Porsche ve daha fazlası." />
+  <title>Chrono Motors — Dijital Showroom</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..700&family=Hanken+Grotesk:wght@300..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#f6f5f1',
+            surface: '#ffffff',
+            surface2: '#efede7',
+            line: '#e2dfd6',
+            ink: '#15161a',
+            inksoft: '#56564f',
+            inkmute: '#8a897f',
+            night: '#0b0c10',
+            charcoal: '#1f2833',
+            charcoal2: '#161c24',
+            gold: '#b8915a',
+            goldhi: '#e6c98c',
+            golddeep: '#8a6a37',
+          },
+          fontFamily: {
+            display: ['"Bodoni Moda"', 'Georgia', 'serif'],
+            sans: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

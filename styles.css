@@ -1,0 +1,292 @@
+/* ============================================================
+   CHRONO MOTORS — Design System
+   Light & airy gallery + dark cinematic hero
+   Accent: champagne gold. Fonts: Bodoni Moda / Hanken Grotesk / Space Mono
+   GPU-accelerated CSS keyframes only (no Three.js)
+   ============================================================ */
+
+:root {
+  /* Light surfaces */
+  --bg:        #f6f5f1;   /* warm off-white */
+  --surface:   #ffffff;
+  --surface-2: #efede7;
+  --line:      #e2dfd6;
+  --ink:       #15161a;   /* near-black text */
+  --ink-soft:  #56564f;
+  --ink-mute:  #8a897f;
+
+  /* Dark cinematic */
+  --night:     #0b0c10;
+  --charcoal:  #1f2833;
+  --charcoal-2:#161c24;
+
+  /* Champagne gold accent */
+  --gold:      #b8915a;
+  --gold-hi:   #e6c98c;
+  --gold-deep: #8a6a37;
+  --gold-glow: rgba(230, 201, 140, 0.55);
+
+  --radius: 14px;
+  --radius-lg: 22px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+html { overflow-x: clip; }
+
+.font-display { font-family: 'Bodoni Moda', Georgia, serif; }
+.font-mono    { font-family: 'Space Mono', ui-monospace, monospace; }
+
+/* selection */
+::selection { background: var(--gold); color: #fff; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--surface-2); }
+::-webkit-scrollbar-thumb { background: #cfcabc; border-radius: 20px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ============================================================
+   GPU helpers
+   ============================================================ */
+.gpu { will-change: transform, opacity; transform: translateZ(0); backface-visibility: hidden; }
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+
+/* podium rotating neon ring */
+@keyframes spin-ring {
+  to { transform: translateZ(0) rotate(360deg); }
+}
+
+/* car floating / hovering */
+@keyframes float-car {
+  0%, 100% { transform: translateZ(0) translateY(0) rotate(-0.4deg); }
+  50%      { transform: translateZ(0) translateY(-14px) rotate(0.4deg); }
+}
+
+/* shadow breathing under the car */
+@keyframes shadow-breathe {
+  0%, 100% { transform: translateZ(0) scaleX(1);    opacity: 0.55; }
+  50%      { transform: translateZ(0) scaleX(0.86); opacity: 0.3; }
+}
+
+/* glow sweep behind car */
+@keyframes glow-sweep {
+  0%, 100% { opacity: 0.45; transform: translateZ(0) scale(1); }
+  50%      { opacity: 0.8;  transform: translateZ(0) scale(1.08); }
+}
+
+/* hotspot pulse */
+@keyframes pulse-ring {
+  0%   { transform: translateZ(0) scale(0.7); opacity: 0.9; }
+  70%  { transform: translateZ(0) scale(2.4); opacity: 0; }
+  100% { transform: translateZ(0) scale(2.4); opacity: 0; }
+}
+
+/* map pin bounce */
+@keyframes pin-bounce {
+  0%, 100% { transform: translateZ(0) translateY(0); }
+  50%      { transform: translateZ(0) translateY(-12px); }
+}
+
+/* radar pulse under pin */
+@keyframes radar {
+  0%   { transform: translateZ(0) scale(0.3); opacity: 0.8; }
+  100% { transform: translateZ(0) scale(2.6); opacity: 0; }
+}
+
+/* reveal */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateZ(0) translateY(30px); }
+  to   { opacity: 1; transform: translateZ(0) translateY(0); }
+}
+
+/* wheel spin (hover) */
+@keyframes wheel-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* shimmer on gold text */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* slow chrono tick rotation for logo bezel */
+@keyframes chrono-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* page enter */
+@keyframes page-in {
+  from { opacity: 0; transform: translateZ(0) translateY(18px); }
+  to   { opacity: 1; transform: translateZ(0) translateY(0); }
+}
+
+/* fade in (gallery cross-fade) */
+@keyframes x-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* mobile nav drawer slide in from right */
+@keyframes slide-from-right {
+  from { transform: translateX(100%); opacity: 0.6; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ============================================================
+   Reusable classes
+   ============================================================ */
+
+.page-enter { animation: page-in 0.6s var(--ease) both; }
+
+.reveal { opacity: 0; }
+.reveal.in { animation: reveal-up 0.7s var(--ease) both; }
+
+.gold-text {
+  background: linear-gradient(100deg, var(--gold-deep), var(--gold-hi), var(--gold), var(--gold-hi), var(--gold-deep));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* gold hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* glass nav */
+.nav-glass {
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+
+/* podium ring */
+.podium-ring {
+  background: conic-gradient(from 0deg,
+    transparent 0deg,
+    rgba(230,201,140,0.05) 40deg,
+    var(--gold) 120deg,
+    var(--gold-hi) 160deg,
+    var(--gold) 200deg,
+    rgba(230,201,140,0.05) 300deg,
+    transparent 360deg);
+  animation: spin-ring 14s linear infinite;
+  will-change: transform;
+}
+
+/* car float wrapper */
+.car-float { animation: float-car 7s ease-in-out infinite; will-change: transform; }
+.car-shadow { animation: shadow-breathe 7s ease-in-out infinite; will-change: transform, opacity; }
+.car-glow { animation: glow-sweep 7s ease-in-out infinite; will-change: transform, opacity; }
+
+/* hotspot */
+.hotspot-pulse::before,
+.hotspot-pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 2px solid var(--gold-hi);
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+.hotspot-pulse::after { animation-delay: 1.2s; }
+
+/* input neon underline */
+.field {
+  position: relative;
+}
+.field input, .field textarea, .field select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 2px;
+  font-size: 16px;
+  color: var(--ink);
+  font-family: inherit;
+  outline: none;
+}
+.field textarea { resize: vertical; min-height: 90px; }
+.field .underline {
+  position: absolute;
+  left: 50%; right: 50%; bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-hi));
+  transition: left 0.4s var(--ease), right 0.4s var(--ease);
+}
+.field:focus-within .underline { left: 0; right: 0; }
+.field label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 4px;
+  font-family: 'Space Mono', monospace;
+}
+
+/* tilt card */
+.tilt {
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* car card hover */
+.car-card { transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease); }
+.car-card:hover { transform: translateY(-8px); }
+.car-card .spec-panel {
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.5s var(--ease), opacity 0.4s var(--ease);
+}
+.car-card:hover .spec-panel { transform: translateY(0); opacity: 1; }
+.car-card .neon-back {
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+.car-card:hover .neon-back { opacity: 1; }
+.car-card:hover .wheel { animation: wheel-spin 0.9s linear infinite; }
+
+/* map pin */
+.map-pin { animation: pin-bounce 2.2s ease-in-out infinite; will-change: transform; }
+.radar-wave { animation: radar 2.6s ease-out infinite; }
+.radar-wave.d2 { animation-delay: 1.3s; }
+
+/* filter chip */
+.chip {
+  transition: all 0.3s var(--ease);
+}
+
+/* card grid stagger */
+.stagger > * { animation: reveal-up 0.6s var(--ease) both; }
+
+/* hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
