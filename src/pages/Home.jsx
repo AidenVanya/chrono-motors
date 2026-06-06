@@ -8,7 +8,7 @@ import { IconArrow } from '../icons';
 import { CarPhotoCard } from './Showroom';
 
 const SEQ_COUNT = 40;
-const SEQ_SRC = (i) => `assets/seq/seq-${String(i).padStart(2, "0")}.jpg`;
+const SEQ_SRC = (i) => `/assets/seq/seq-${String(i).padStart(2, "0")}.jpg`;
 
 function HeroVideo({ t, lang, go, onProgress }) {
   const sectionRef = useRef(null);
@@ -233,7 +233,7 @@ function CraftBand({ t, lang, go }) {
             <div className="relative rounded-[var(--radius-lg)] overflow-hidden border border-white/10"
                  style={{ boxShadow:"0 30px 80px -30px rgba(0,0,0,.8)" }}>
               <video ref={videoRef} className="w-full h-full object-cover aspect-[4/3] gpu"
-                src="assets/video2.mp4" muted loop playsInline preload="none" />
+                src="/assets/video2.mp4" muted loop playsInline preload="none" />
               <div className="absolute inset-0 pointer-events-none"
                    style={{ background:"linear-gradient(120deg,transparent 55%,rgba(230,201,140,.12))" }} />
             </div>
@@ -274,7 +274,7 @@ function CraftBand({ t, lang, go }) {
    EXPLODED VIEW — scroll-scrub image sequence
    ============================================================ */
 const EXP_COUNT = 34;
-const EXP_SRC = (i) => `assets/seq3/x-${String(i).padStart(2, "0")}.jpg`;
+const EXP_SRC = (i) => `/assets/seq3/x-${String(i).padStart(2, "0")}.jpg`;
 
 function ExplodedView({ t }) {
   const sectionRef = useRef(null);
